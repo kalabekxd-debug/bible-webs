@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your verse — Verse & Sky</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky-stage">
+    <div class="rays-wrap"><div class="rays"></div></div>
+    <div class="sun"></div>
+    <div class="clouds"></div>
+    <div class="wrap">
+      <div class="top-space"></div>
+      <a href="index.html" class="back-link">&larr; Choose a different feeling</a>
+      <div style="text-align:center;"><span class="emo-tag" id="emo-tag"></span></div>
+      <div class="verse-card">
+        <p class="verse-text" id="verse-text">Loading…</p>
+        <p class="verse-ref" id="verse-ref"></p>
+        <div class="actions">
+          <button class="action-btn primary" id="another-btn">Give me another verse</button>
+          <a class="action-btn ghost" href="index.html">Back to feelings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>Every verse is from the King James Bible. Sit with it for a moment. 🕊️</footer>
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('e');
+    const emotion = EMOTIONS.find(e => e.id === id) || EMOTIONS[0];
+    document.documentElement.style.setProperty('--btn-bg', emotion.bg);
+    document.body.style.setProperty('--btn-bg', emotion.bg);
+    const tag = document.getElementById('emo-tag');
+    tag.style.setProperty('--btn-bg', emotion.bg);
+    tag.style.setProperty('--btn-ink', emotion.ink);
+    tag.innerHTML = `<span aria-hidden="true">${emotion.emoji}</span> Feeling ${emotion.label.toLowerCase()}`;
+    const card = document.querySelector('.verse-card');
+    card.style.setProperty('--btn-bg', emotion.bg);
+    const primaryBtn = document.getElementById('another-btn');
+    primaryBtn.style.setProperty('--btn-bg', emotion.ink);
+    primaryBtn.style.setProperty('--btn-ink', '#fff8f0');
+    let lastIndex = -1;
+    function showVerse(){
+      let i = Math.floor(Math.random() * emotion.verses.length);
+      if (emotion.verses.length > 1) while (i === lastIndex) i = Math.floor(Math.random() * emotion.verses.length);
+      lastIndex = i;
+      const v = emotion.verses[i];
+      document.getElementById('verse-text').textContent = v.text;
+      document.getElementById('verse-ref').textContent = v.ref;
+    }
+    primaryBtn.addEventListener('click', showVerse);
+    showVerse();
+  </script>
+</body>
+</html>
