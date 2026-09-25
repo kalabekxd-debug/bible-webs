@@ -1,21 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f5f0;
-  --surface: #ffffff;
-  --surface-muted: #efeee9;
-
-  --foreground: #1c1c1a;
-  --foreground-secondary: #66645f;
-  --foreground-muted: #92908a;
-
-  --border: #DDDAD2;
-
-  --primary: #263b5a;
-  --primary-hover: #1d2f49;
-
-  --accent: #b79b62;
-
+  --background: #f6f4ee;
+  --foreground: #1c1c19;
+  --surface: #fffdf8;
+  --surface-muted: #eeece5;
+  --border: #dcd8ce;
+  --primary: #2b3f5f;
+  --primary-foreground: #ffffff;
+  --muted: #77746d;
+  --accent: #b08f52;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
@@ -25,32 +19,20 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
-
-  --color-foreground: var(--foreground);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-foreground-muted: var(--foreground-muted);
-
   --color-border: var(--border);
-
   --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
-
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
   --color-accent: var(--accent);
-
   --font-sans: var(--font-inter);
   --font-serif: var(--font-source-serif);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--background);
@@ -59,21 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
-button,
-a,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-::selection {
-  background: var(--primary);
-  color: #ffffff;
-}
+button, a, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+::selection { background: var(--primary); color: var(--primary-foreground); }

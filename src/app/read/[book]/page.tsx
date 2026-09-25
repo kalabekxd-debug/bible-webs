@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { books, getBook } from "@/data/bible";
+
+type Props = { params: Promise<{ book: string }> };
+export function generateStaticParams() { return books.map((book) => ({ book: book.slug })); }
+export default async function BookPage({ params }: Props) { const { book: slug } = await params; const book = getBook(slug); if (!book) notFound(); return <main><section className="border-b border-border"><div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24"><Link href="/read" className="text-sm text-muted hover:text-foreground">← Semua kitab</Link><p className="mt-12 text-xs font-semibold uppercase tracking-[0.18em] text-primary">{book.testament}</p><h1 className="mt-4 font-serif text-5xl tracking-tight sm:text-7xl">{book.name}</h1><p className="mt-6 text-lg text-muted">{book.chapters} pasal.</p></div></section><section className="mx-auto max-w-5xl px-6 py-16 lg:px-10 lg:py-24"><div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">{Array.from({ length: book.chapters }, (_, index) => index + 1).map((chapter) => <Link key={chapter} href={"/read/" + book.slug + "/" + chapter} className="flex aspect-square items-center justify-center rounded-xl border border-border bg-surface text-sm font-semibold transition hover:border-primary hover:bg-primary hover:text-primary-foreground">{chapter}</Link>)}</div></section></main>; }
