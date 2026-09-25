@@ -1,4 +1,4 @@
-import verses from "../../data/bible/verses.json";
+import verses from "../data/bible/verses.json";
 import type { BibleBook } from "@/data/bible";
 import { books } from "@/data/bible";
 
