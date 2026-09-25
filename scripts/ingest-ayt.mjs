@@ -2,16 +2,16 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const API = "https://api.ayt.co/v1/bible.php";
-const SOURCE = "sela.com";
+const SOURCE = process.env.AYT_SOURCE ?? "sela.id";
 const root = process.cwd();
 const booksFile = path.join(root, "src", "data", "bible.ts");
 const outputDir = path.join(root, "src", "data", "bible");
 const outputFile = path.join(outputDir, "verses.json");
 
 function parseBooks(source) {
-  const match = source.match(/const rawBooks: Array<\\[string,string,string,string\\]> = \\[(.*?)\\];/s);
+  const match = source.match(/const rawBooks: Array<\[string,string,string,string\]> = \[(.*?)\];/s);
   if (!match) throw new Error("Could not parse rawBooks from src/data/bible.ts");
-  return [...match[1].matchAll(/\\[\"([^\"]+)\",\"([^\"]+)\",\"(\\d+)\",\"([^\"]+)\"\\]/g)].map((m) => ({
+  return [...match[1].matchAll(/\["([^"]+)","([^"]+)","(\d+)","([^"]+)"\]/g)].map((m) => ({
     name: m[1], abbr: m[2], chapters: Number(m[3])
   }));
 }
@@ -60,9 +60,10 @@ async function main() {
     console.log("Ingested " + Math.min(i + concurrency, jobs.length) + "/" + jobs.length + " chapters");
   }
 
-  verses.sort((a, b) => a.abbr.localeCompare(b.abbr) || a.chapter - b.chapter || a.verse - b.verse);
+  if (verses.length === 0) throw new Error("AYT ingestion returned no verses; refusing to overwrite the dataset.");
+  verses.sort((a, b) => a.book.localeCompare(b.book) || a.chapter - b.chapter || a.verse - b.verse);
   await fs.mkdir(outputDir, { recursive: true });
-  await fs.writeFile(outputFile, JSON.stringify(verses, null, 2) + "\\n", "utf8");
+  await fs.writeFile(outputFile, JSON.stringify(verses, null, 2) + "\n", "utf8");
   console.log("Wrote " + verses.length + " verses to " + outputFile);
 }
 
