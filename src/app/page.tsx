@@ -17,7 +17,7 @@ export default function Home() {
               <Link href="/search" className="inline-flex min-h-12 items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90">Mulai mencari</Link>
               <Link href="/moods" className="inline-flex min-h-12 items-center justify-center rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground transition hover:border-primary">Jelajahi berdasarkan perasaan</Link>
             </div>
-            <p className="mt-6 text-xs leading-6 text-muted">Sela membantu menemukan Firman; Sela tidak berbicara atas nama Tuhan dan tidak mengklaim satu ayat sebagai jawaban pasti.</p>
+            <p className="mt-6 text-xs leading-6 text-muted">Sela membantu kamu menemukan bagian dari Firman yang relevan dengan apa yang sedang kamu bawa.</p>
           </div>
           <aside className="relative">
             <div className="absolute -inset-8 rounded-full bg-primary/5 blur-3xl" />
