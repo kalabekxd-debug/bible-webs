@@ -2,7 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const API = "https://api.ayt.co/v1/bible.php";
-const SOURCE = process.env.AYT_SOURCE ?? "sela.id";
+const SOURCE = process.env.AYT_SOURCE;
+if (!SOURCE) throw new Error("AYT_SOURCE is required. Set it to the public site address that uses the API.");
 const root = process.cwd();
 const booksFile = path.join(root, "src", "data", "bible.ts");
 const outputDir = path.join(root, "src", "data", "bible");
