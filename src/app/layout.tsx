@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
 const sourceSerif = Source_Serif_4({ variable: "--font-source-serif", subsets: ["latin"], display: "swap" });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sela.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
