@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sela
 
-## Getting Started
+**Berhenti sejenak. Kembali kepada Tuhan.**
 
-First, run the development server:
+Sela is an independent digital experience that helps people find Bible passages relevant to the question, condition, or feeling they bring.
 
+It is not an official church, denomination, foundation, religious organization, or Bible institution website.
+
+## Stack
+- Next.js 16.3.1
+- React 19.2.8
+- TypeScript
+- Tailwind CSS 4
+- Static curated data
+- Vercel
+
+## Development
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Bible ingestion
+AYT is intended to be ingested separately from the deployed runtime:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run ingest:bible
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The deployed application does not call the AYT API for user requests. The generated verse dataset is stored under `src/data/bible/verses.json`.
 
-## Learn More
+Production use remains subject to the project's licensing due diligence and written confirmation with YLSA.
 
-To learn more about Next.js, take a look at the following resources:
+## Product constraints
+No authentication, backend, database, admin dashboard, payment, analytics, or runtime AI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `MASTER_ARCHITECTURE.md` and the final Sela PRD for the complete product specification.
