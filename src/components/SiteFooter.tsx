@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 const groups = [
-  { title: "Explore", links: [["Beranda", "/"], ["Moods", "/moods"], ["Cari ayat", "/search"], ["Firman", "/read"]] },
-  { title: "About", links: [["Tentang Sela", "/about"], ["Cara kerja", "/how-it-works"], ["Contact", "/contact"]] },
+  { title: "Jelajah", links: [["Beranda", "/"], ["Moods", "/moods"], ["Cari ayat", "/search"], ["Firman", "/read"]] },
+  { title: "Tentang", links: [["Tentang Sela", "/about"], ["Cara kerja", "/how-it-works"], ["Contact", "/contact"]] },
   { title: "Legal", links: [["Privacy", "/privacy"], ["Terms", "/terms"], ["Disclaimer", "/disclaimer"], ["Copyright", "/copyright"], ["Accessibility", "/accessibility"]] },
 ] as const;
 
