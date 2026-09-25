@@ -1,6 +1,7 @@
 name: Sela CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [feat/sela-prd-v1]
   pull_request:
